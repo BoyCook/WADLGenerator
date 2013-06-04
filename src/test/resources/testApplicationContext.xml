@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <bean id="marshaller"
+          class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <property name="aliases">
+            <props>
+                <prop key="resource">org.cccs.wadlgenerator.domain.Resource</prop>
+                <prop key="application">org.cccs.wadlgenerator.domain.Resources</prop>
+            </props>
+        </property>
+        <property name="converters">
+            <list>
+                <bean class="org.cccs.wadlgenerator.converters.ResourcesConverter"/>
+                <bean class="org.cccs.wadlgenerator.converters.ResourceConverter"/>
+            </list>
+        </property>
+        <property name="mode" value="1001"/>
+    </bean>
+</beans>
